@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+<?import javafx.scene.text.*?>
+<?import renamegui.*?> 
+
+<VBox fx:id="wind" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="renamegui.descriptionScreenController">
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
+    <VBox spacing="10" >
+        <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        </padding> 
+        <Label fx:id="bigLabel" style="-fx-font: BOLD 20 Myriad;" text="説明・使用方法">
+        </Label> 
+
+        <HBox spacing="20">
+            <TextArea fx:id="description" prefHeight="300.0" prefWidth="500.0" wrapText="true" editable="false"/>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER">
+            <Button fx:id="closeButton" text="閉じる" prefWidth="200" onAction="#close" />
+        </HBox>
+    </VBox>
+</VBox>

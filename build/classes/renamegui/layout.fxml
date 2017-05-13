@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+<?import javafx.scene.text.*?>
+<?import renamegui.*?> 
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="renamegui.Controller">
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
+    <MenuBar fx:id="menuBar" >
+        <menus>
+            <Menu text="ファイル">
+                <items>
+                    <MenuItem text="バージョン情報" onAction="#showVerInfo" />
+                    <MenuItem text="閉じる" onAction="#exit"/>
+                </items>
+            </Menu>
+            <Menu text="ヘルプ">
+                <items>
+                    <MenuItem text="使用方法" onAction="#showHowTo" />
+                    <MenuItem text="作者サイト" onAction="#showSite" />
+                </items>
+            </Menu>
+            <Menu text="設定">
+                <items>
+                    <MenuItem text="デフォルト設定" onAction="#showSettingsWindow" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <VBox spacing="10" >
+        <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        </padding> 
+        <Label fx:id="bigLabel" style="-fx-font: BOLD 20 Myriad;" text="Batch Rename V3.0 - ファイル検索、文字列除去ソフト">
+        </Label> 
+        <HBox spacing="20">
+            <TextField fx:id="dirField" prefWidth="300" editable="false" alignment="CENTER_LEFT"/>
+            <Button fx:id="dirButton" text="  フォルダー選択" prefWidth="150" onAction="#pickDirectory" alignment="CENTER_LEFT" />
+            <Label text="サブフォルダーを含める" prefWidth="200" alignment="TOP_RIGHT"/>
+            <CheckBox fx:id="subFolderCheckBox" selected="true" alignment="TOP_RIGHT"/>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER">
+            <Button fx:id="showFiles" text="該当ファイル表示" prefWidth="830" onAction="#showFiles"/></HBox>
+ 
+        <HBox spacing="20" alignment="CENTER">
+            <ProgressBar fx:id="progressBar" prefWidth="830" visible="false" />
+        </HBox>
+        <HBox spacing="20">
+            <Label style="-fx-font: NONE 12 Myriad;" text="出力画面" prefWidth="400" />
+            <Label style="-fx-font: NONE 12 Myriad;" text="エラー出力画面" prefWidth="220" />
+            <Label style="-fx-font: NONE 12 Myriad;" text="検索・除去文字列" prefWidth="180" />
+            
+        </HBox>
+
+        <HBox spacing="20">
+            <TextArea fx:id="consoleArea" prefHeight="400.0" prefWidth="400.0" wrapText="true" editable="false" />
+            <TextArea fx:id="errorConsoleArea" prefHeight="400.0" prefWidth="220.0" wrapText="true" editable="false" />
+            <VBox spacing="20">
+            <TableView fx:id="tableView"  prefHeight="320.0" prefWidth="180.0">
+                <columns>
+                    <TableColumn fx:id="prioritycolumn" text="優先順位" prefWidth="58">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="priority"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>    
+                <columns>
+                    <TableColumn fx:id="wordcolumn" text="文字列一覧" prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="word"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">               
+                    </FXCollections>
+                </items>
+            </TableView>
+            <HBox spacing="10">
+            <TextField fx:id="newString" prefWidth="85.0"/>
+            <Button fx:id="registerString" text="文字列登録" prefWidth="85.0" onAction="#registerWord"/>
+            </HBox>
+            <HBox spacing="10">
+            <Button fx:id="deleteStringButton" text="選択した文字列を削除する" prefWidth="180.0" onAction="#deleteWord" disable="true"/>
+            </HBox>
+            </VBox>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER">
+            <Button fx:id="execute" text="実行する" prefWidth="830" visible="false" onAction="#execute" />
+        </HBox>
+    </VBox>
+</VBox>
